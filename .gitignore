@@ -1,0 +1,23 @@
+Data/
+# Ignore Python virtual environments
+env/
+.venv/
+
+# Ignore Python cache
+__pycache__/
+*.py[cod]
+
+# Ignore site-packages
+*/site-packages/
+
+# Ignore OS files
+.DS_Store
+
+# Ignore IDE/editor settings
+.vscode/
+.idea/
+
+# Ignore compiled files
+*.so
+*.dll
+*.pyd
