@@ -1,4 +1,3 @@
-Data/
 # Ignore Python virtual environments
 env/
 .venv/
