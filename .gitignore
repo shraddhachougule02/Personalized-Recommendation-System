@@ -21,3 +21,4 @@ __pycache__/
 *.so
 *.dll
 *.pyd
+Bin/
