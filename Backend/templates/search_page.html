@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Product Search</title>
+  <style>
+    body {
+      font-family: Roboto, sans-serif;
+      background: linear-gradient(120deg, #ffe6f0, #fff0f5);
+      color: #4d2c2c;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    input[type=text] {
+      width: 70%;
+      padding: 12px;
+      font-size: 16px;
+      border: 2px solid #a83232;
+      border-radius: 8px;
+      outline: none;
+    }
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      background: #a83232;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #7a1a1a;
+    }
+  </style>
+</head>
+<body>
+  <h2>Search Products</h2>
+  <form action="/search_results" method="get">
+    <input type="text" name="query" placeholder="Enter product name or keyword" value="{{ query }}" required />
+    <button type="submit">Search</button>
+  </form>
+</body>
+</html>

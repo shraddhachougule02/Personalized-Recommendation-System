@@ -1,0 +1,122 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #ffe6e6, #fff0f5);
+    margin: 0;
+    padding: 0;
+    color: #333;
+
+    /* Center the box */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Add a smooth fade for page load */
+    animation: fadeIn 1s ease-in-out;
+}
+
+.container {
+    max-width: 700px;
+    margin: 0;
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(168, 50, 50, 0.25);
+    text-align: center;
+
+    /* Smooth entrance */
+    transform: translateY(20px);
+    animation: slideUp 0.8s ease forwards;
+}
+
+h2, h3, h4 {
+    color: #a83232;
+    margin-bottom: 15px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    letter-spacing: 0.5px;
+}
+
+input[type=text], select {
+    width: 100%;
+    padding: 12px 14px;
+    margin: 10px 0 20px 0;
+    border: 2px solid #a83232;
+    border-radius: 6px;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.25s ease;
+}
+
+input[type=text]:focus,
+select:focus {
+    border-color: #7a1a1a;
+    box-shadow: 0 0 6px rgba(168, 50, 50, 0.4);
+}
+
+button {
+    background: #a83232;
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background: #7a1a1a;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(122, 26, 26, 0.3);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 8px rgba(122, 26, 26, 0.2);
+}
+
+.results {
+    margin-top: 25px;
+    text-align: left;
+    animation: fadeIn 0.6s ease;
+}
+
+.results ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.results li {
+    background: #fdf9f9;
+    margin-bottom: 12px;
+    padding: 14px 18px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(168, 50, 50, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.results li:hover {
+    transform: translateX(4px);
+    box-shadow: 0 6px 14px rgba(168, 50, 50, 0.12);
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+    justify-content: center; /* Neater button layout */
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}

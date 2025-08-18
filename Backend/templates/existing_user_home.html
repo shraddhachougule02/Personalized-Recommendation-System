@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Welcome to SmartSkin</title>
+  <style>
+    body {
+      font-family: Roboto, Arial, sans-serif;
+      background: linear-gradient(120deg, #ffe6f0, #fff0f5);
+      color: #4d2c2c;
+      margin: 0;
+      padding: 0;
+      animation: fadeIn 1s ease-in-out;
+    }
+    .topbar {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      gap: 12px;
+      max-width: 1020px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 16px;
+      padding-top: 20px; 
+    }
+    .topbar .logo {
+      height: 60px;
+      width: auto;
+      flex-shrink: 0;
+    }
+    .topbar .center-title {
+      flex: 1;
+      text-align: center;
+      color: #a83232;
+      margin: 8px 0 12px;
+      font-weight: 700;
+      font-size: 1.8rem;
+    }
+    .btn-link {
+      background: #fff;
+      border: 2px solid #a83232;
+      color: #a83232;
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-weight: 600;
+      white-space: nowrap;
+      flex-shrink: 0;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+    .btn-link:hover {
+      background: #ffe6ea;
+    }
+    .search-bar {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      max-width: 720px;
+      margin: 0 auto 18px;
+    }
+    .search-bar input {
+      padding: 12px 14px;
+      border: 2px solid #a83232;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+    .btn {
+      background: #a83232;
+      color: #fff;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 15px;
+    }
+    .btn.outline {
+      background: #fff;
+      color: #a83232;
+      border: 2px solid #a83232;
+    }
+    .btn:hover {
+      background: #7a1a1a;
+    }
+    .btn.outline:hover {
+      background: #ffe6ea;
+    }
+    .filters-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin: 10px 0 6px;
+    }
+    .chip {
+      list-style: none;
+      cursor: pointer;
+      user-select: none;
+      padding: 8px 12px;
+      border: 2px solid #a83232;
+      border-radius: 999px;
+      color: #a83232;
+      font-weight: 600;
+      font-size: 14px;
+      background: #fff;
+    }
+    details[open] > .chip {
+      background: #a83232;
+      color: #fff;
+    }
+    .filters-toolbar details {
+      position: relative;
+    }
+    details .menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9999;
+      min-width: 240px;
+      max-width: 300px;
+      max-height: 280px;
+      overflow: auto;
+      background: #fff;
+      color: #333;
+      border: 1px solid #e7c5c5;
+      border-radius: 12px;
+      box-shadow: 0 12px 28px rgba(168, 50, 50, 0.18);
+      padding: 12px;
+      display: grid;
+      gap: 8px;
+      text-align: left;
+    }
+    .menu h4 {
+      margin: 0 0 6px;
+      color: #a83232;
+      font-size: 14px;
+    }
+    .grid2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+    label {
+      font-size: 13px;
+      color: #5b3b3b;
+    }
+    input[type="number"], select {
+      width: 100%;
+      padding: 8px 9px;
+      border: 1px solid #dca4a4;
+      border-radius: 8px;
+      font-size: 14px;
+      background: #fff;
+    }
+    .muted {
+      font-size: 12px;
+      color: #8b6b6b;
+    }
+    .results ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    /* Recommended products formatted with product name on first line,
+       brand left and price right on second line; price is bold */
+    .recommended-list li {
+      background: #fff0f5;
+      margin: 10px 0;
+      padding: 12px 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(168, 50, 50, 0.18);
+      font-weight: 600;
+      font-size: 16px;
+      color: #4d2c2c;
+      display: block;
+    }
+    .product-name {
+      margin-bottom: 6px;
+    }
+    .product-meta {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 400;
+      font-size: 14px;
+      color: #7a1a1a;
+    }
+    .product-meta span.price {
+      font-weight: 700; /* bold price */
+    }
+    .title {
+      color: #a83232;
+      margin: 22px 0 10px;
+      font-weight: 700;
+      text-align: center;
+    }
+    /* Shop by Brands You Love header */
+    .brands-header {
+      max-width: 1020px;
+      margin: 20px auto 8px;
+      padding: 0 16px;
+      font-size: 1.2rem;
+      color: #a83232;
+      font-weight: 700;
+      text-align: left;
+      user-select: none;
+    }
+    /* Banner slideshow */
+    .banner-slideshow {
+      max-width: 960px;
+      margin: 0 auto 30px;
+      position: relative;
+    }
+    .banner-slideshow img {
+      width: 100%;
+      height: auto;
+      display: none;
+      border-radius: 10px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    }
+    .banner-slideshow img.active {
+      display: block;
+      animation: fade 1s ease-in-out;
+    }
+    @keyframes fade {
+      from {
+        opacity: 0.3;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <img src="/static/logo.png" alt="SmartSkin Logo" class="logo" />
+    <div class="spacer"></div>
+    <h2 class="center-title">Welcome to SmartSkin</h2>
+    <a href="/" class="btn-link">Home</a>
+  </div>
+  <form class="search-bar" action="/search_results" method="get">
+    <input name="query" type="text" placeholder="Search products..." required />
+    <input type="hidden" name="user_id" value="{{ user_id }}" />
+    <button class="btn" type="submit">Search</button>
+  </form>
+  <form id="filters_form" style="max-width: 1020px; margin: 0 auto;">
+    <input type="hidden" id="source" value="existing_user" />
+    <input type="hidden" id="user_id" value="{{ user_id }}" />
+    <div class="filters-toolbar">
+      <details class="filter">
+        <summary class="chip">Product Type</summary>
+        <div class="menu">
+          <h4>Product Type</h4>
+          <select id="product_type"></select>
+        </div>
+      </details>
+      <details class="filter">
+        <summary class="chip">Skin Type</summary>
+        <div class="menu">
+          <h4>Skin Types</h4>
+          <div id="skin_type_box" class="grid2"></div>
+        </div>
+      </details>
+      <details class="filter">
+        <summary class="chip">Skin Concern</summary>
+        <div class="menu">
+          <h4>Skin Concerns</h4>
+          <div id="skin_concern_box" class="grid2"></div>
+        </div>
+      </details>
+      <details class="filter">
+        <summary class="chip">Advanced</summary>
+        <div class="menu">
+          <h4>Brands</h4>
+          <div id="brand_box" class="grid2" style="max-height: 160px; overflow: auto"></div>
+          <hr style="border: 0; border-top: 1px solid #f0d1d1; margin: 8px 0" />
+          <h4>Price (₹)</h4>
+          <div class="grid2">
+            <input id="price_min" type="number" placeholder="Min" />
+            <input id="price_max" type="number" placeholder="Max" />
+          </div>
+          <div class="muted">Tip: Select multiple brands if you like.</div>
+        </div>
+      </details>
+      <button type="submit" class="btn">Apply</button>
+      <button type="button" id="filters_clear" class="btn outline">Clear</button>
+    </div>
+    <div id="filter_status" class="muted" aria-live="polite"></div>
+  </form>
+  {% if recommended_products %}
+  <div class="title">Recommendations based on past searches</div>
+  <div class="results">
+    <ul id="recommended_list" class="recommended-list">
+      {% for p in recommended_products %}
+      <li>
+        <div class="product-name">{{ p['product_name'] }}</div>
+        <div class="product-meta">
+          <span>{{ p['brand'] }}</span>
+          <span class="price">₹{{ p['price'] }}</span>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+  <div class="brands-header">Shop by Brands You Love &rarr;</div>
+  <div class="banner-slideshow" id="bannerSlideshow">
+    <img src="/static/cosrx.png" class="active" alt="Banner 1" />
+    <img src="/static/laneige.png" alt="Banner 2" />
+    <img src="/static/kirhls.png" alt="Banner 3" />
+    <img src="/static/safi.png" alt="Banner 4" />
+    <img src="/static/thebodyshop.png" alt="Banner 5" />
+    <img src="/static/eco_banner.png" alt="Banner 6" />
+
+  </div>
+  <script>
+    (function () {
+      const filters = document.querySelectorAll(".filters-toolbar details");
+      filters.forEach((d) => {
+        d.addEventListener("toggle", () => {
+          if (d.open)
+            filters.forEach((o) => {
+              if (o !== d) o.removeAttribute("open");
+            });
+        });
+      });
+      document.addEventListener("click", (e) => {
+        if (!e.target.closest(".filters-toolbar")) filters.forEach((d) => d.removeAttribute("open"));
+      });
+      document.querySelectorAll(".filters-toolbar details .menu").forEach((menu) => {
+        menu.addEventListener("click", (e) => e.stopPropagation());
+      });
+    })();
+    function createCheckbox(name, value) {
+      const id = name + "_" + value.replace(/\W+/g, "_");
+      const label = document.createElement("label");
+      const input = document.createElement("input");
+      input.type = "checkbox";
+      input.name = name;
+      input.value = value;
+      input.id = id;
+      label.htmlFor = id;
+      label.appendChild(input);
+      label.appendChild(document.createTextNode(" " + value));
+      return label;
+    }
+    function populateSelect(select, options) {
+      select.innerHTML = "";
+      (options || []).forEach((v) => {
+        const opt = document.createElement("option");
+        opt.value = v;
+        opt.textContent = v;
+        select.appendChild(opt);
+      });
+    }
+    document.addEventListener("DOMContentLoaded", async () => {
+      const productTypeSel = document.getElementById("product_type");
+      const skinTypeBox = document.getElementById("skin_type_box");
+      const concernBox = document.getElementById("skin_concern_box");
+      const brandBox = document.getElementById("brand_box");
+      const priceMin = document.getElementById("price_min");
+      const priceMax = document.getElementById("price_max");
+      const statusEl = document.getElementById("filter_status");
+      try {
+        const res = await fetch("/options");
+        const opts = await res.json();
+        populateSelect(productTypeSel, opts.product_types || []);
+        if (productTypeSel.options.length > 0) productTypeSel.selectedIndex = 0;
+        skinTypeBox.innerHTML = "";
+        (opts.skin_types || []).forEach((v) => skinTypeBox.appendChild(createCheckbox("skin_type", v)));
+        concernBox.innerHTML = "";
+        (opts.skin_concerns || []).forEach((v) => concernBox.appendChild(createCheckbox("skin_concern", v)));
+        brandBox.innerHTML = "";
+        (opts.brands || []).forEach((v) => brandBox.appendChild(createCheckbox("brand", v)));
+        if (typeof opts.min_price === "number") {
+          priceMin.min = String(Math.max(0, opts.min_price));
+          priceMin.placeholder = `Min (≥ ${opts.min_price})`;
+        }
+        if (typeof opts.max_price === "number") {
+          priceMax.max = String(Math.max(0, opts.max_price));
+          priceMax.placeholder = `Max (≤ ${opts.max_price})`;
+        }
+      } catch (e) {
+        if (statusEl) statusEl.textContent = "Could not load filter options.";
+      }
+      document.getElementById("filters_clear").addEventListener("click", () => {
+        if (productTypeSel.options.length > 0) productTypeSel.selectedIndex = 0;
+        document.querySelectorAll("#skin_type_box input[type=checkbox], #skin_concern_box input[type=checkbox], #brand_box input[type=checkbox]").forEach((cb) => (cb.checked = false));
+        priceMin.value = "";
+        priceMax.value = "";
+        if (statusEl) statusEl.textContent = "Cleared.";
+      });
+      document.getElementById("filters_form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (statusEl) statusEl.textContent = "Applying…";
+        const userId = document.getElementById("user_id").value || "";
+        const params = new URLSearchParams();
+        params.append("source", "existing_user");
+        if (userId) params.append("user_id", userId);
+        const pt = productTypeSel.value;
+        if (pt) params.append("product_type", pt);
+        document.querySelectorAll("#skin_type_box input[type=checkbox]:checked").forEach((cb) => { params.append("skintype_list", cb.value); });
+        document.querySelectorAll("#skin_concern_box input[type=checkbox]:checked").forEach((cb) => { params.append("skin_concern", cb.value); });
+        document.querySelectorAll("#brand_box input[type=checkbox]:checked").forEach((cb) => { params.append("brand", cb.value); });
+        const minAttr = parseFloat(priceMin.min || "0");
+        const maxAttr = parseFloat(priceMax.max || "0");
+        const pm = priceMin.value ? Math.max(minAttr, parseFloat(priceMin.value)) : "";
+        const px = priceMax.value ? Math.max(minAttr, Math.min(maxAttr || Infinity, parseFloat(priceMax.value))) : "";
+        if (pm !== "") params.append("price_min", pm);
+        if (px !== "") params.append("price_max", px);
+        window.location.href = `/filter_results?${params.toString()}`;
+      });
+      const banners = document.querySelectorAll("#bannerSlideshow img");
+      let bannerIndex = 0;
+      function showNextBanner() {
+        banners[bannerIndex].classList.remove("active");
+        bannerIndex = (bannerIndex + 1) % banners.length;
+        banners[bannerIndex].classList.add("active");
+      }
+      setInterval(showNextBanner, 4000);
+    });
+  </script>
+</body>
+</html>

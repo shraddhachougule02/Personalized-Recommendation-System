@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Filter Products</title>
+<style>
+  body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #ffe6f0, #fff0f5);
+    color: #4d2c2c;
+    text-align: center;
+    padding: 40px 20px;
+    margin: 0;
+  }
+  select, button, input[type="number"] {
+    padding: 10px 15px; margin: 10px 0;
+    border-radius: 8px; border: 2px solid #a83232; font-size: 16px;
+  }
+  select[multiple] { height: 110px; }
+  button { background: #a83232; color:#fff; border:none; cursor:pointer; transition: background .3s; }
+  button:hover { background:#7a1a1a; }
+  .results { margin-top: 20px; }
+  ul { list-style: none; padding-left: 0; }
+  li {
+    background: #fff0f5; margin: 10px auto; padding: 12px 15px;
+    border-radius: 10px; max-width: 600px; box-shadow: 0 4px 10px rgba(168,50,50,.2);
+  }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 700px; margin: 0 auto; }
+</style>
+</head>
+<body>
+<h2>Filter Products</h2>
+
+<form id="filters_form">
+  <div class="row">
+    <div>
+      <label>Product Type:</label><br/>
+      <select id="product_type">
+        <option value="Cleanser">Cleanser</option>
+        <option value="Moisturizer">Moisturizer</option>
+        <option value="Serum">Serum</option>
+        <option value="Sunscreen">Sunscreen</option>
+      </select>
+    </div>
+
+    <div>
+      <label>Skin Type (multi):</label><br/>
+      <select id="skin_type" multiple>
+        <option value="Dry">Dry</option>
+        <option value="Oily">Oily</option>
+        <option value="Normal">Normal</option>
+        <option value="Combination">Combination</option>
+        <option value="Sensitive">Sensitive</option>
+      </select>
+    </div>
+  </div>
+
+  <div style="max-width:700px; margin: 0 auto;">
+    <label>Skin Concern (multi):</label><br/>
+    <select id="skin_concern" multiple style="width:100%;">
+      <option value="Acne">Acne</option>
+      <option value="Wrinkles">Wrinkles</option>
+      <option value="Dark Spots">Dark Spots</option>
+      <option value="Redness">Redness</option>
+    </select>
+  </div>
+
+  <details style="max-width:700px; margin:10px auto;">
+    <summary>Advanced (Brand & Price)</summary>
+    <div class="row" style="margin-top:10px;">
+      <div>
+        <label>Brand (multi-select):</label><br/>
+        <select id="brand" multiple>
+          <!-- optional: add options -->
+        </select>
+      </div>
+      <div>
+        <label>Price Range (₹):</label><br/>
+        <input id="price_min" type="number" placeholder="Min">
+        <input id="price_max" type="number" placeholder="Max">
+      </div>
+    </div>
+  </details>
+
+  <button type="submit">Apply Filters</button>
+  <div id="filter_status" aria-live="polite" style="font-size:14px; margin-top:6px;"></div>
+</form>
+
+<div class="results">
+  <ul id="filter_results"></ul>
+</div>
+
+<script src="/static/js/filters.js"></script>
+</body>
+</html>

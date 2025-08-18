@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SmartSkin - Welcome</title>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(120deg, #ffe6f0, #fff0f5);
+      color: #4d2c2c;
+      margin: 0;
+      padding: 0;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .top-banner {
+      background-color: #a83232;
+      text-align: center;
+      padding: 8px 0;
+      font-weight: 600;
+      font-size: 16px;
+      color: #fffefe;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      position: absolute;
+      top: 30px;
+      left: 0;
+    }
+
+    header img {
+      height: 60px;
+      width: auto;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 100px auto 30px auto;
+      text-align: center;
+    }
+
+    h2 {
+      color: #a83232;
+      font-size: 42px;
+      margin-bottom: 30px;
+      font-weight: 700;
+      text-shadow: 1px 2px 4px rgba(168, 50, 50, 0.15);
+    }
+
+    button {
+      background: #a83232;
+      color: white;
+      border: none;
+      padding: 15px 40px;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      margin: 12px;
+      transition: all 0.3s ease, box-shadow 0.6s ease-in-out;
+      box-shadow: 0 6px 14px rgba(168, 50, 50, 0.25);
+    }
+
+    button:hover {
+      background: #7a1a1a;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(122, 26, 26, 0.5);
+      animation: pulseShadow 1.2s infinite alternate;
+    }
+
+    button:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 10px rgba(122, 26, 26, 0.25);
+      animation: none;
+    }
+
+    .banner-overlay {
+      width: 80%;
+      max-width: 800px;
+      background: linear-gradient(to right, #fcdede, #fff5f5);
+      padding: 16px 28px;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 600;
+      color: #a83232;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+      margin: 30px auto;
+      text-align: center;
+    }
+
+    .slideshow {
+      width: 90%;
+      max-width: 1100px;
+      height: auto;
+      margin: 0 auto 40px auto;
+      position: relative;
+    }
+
+    .slideshow img {
+      width: 100%;
+      height: auto;
+      display: none;
+      border-radius: 8px;
+      object-fit: contain;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      box-shadow: 0 6px 18px rgba(168, 50, 50, 0.15);
+    }
+
+    .slideshow img.active {
+      display: block;
+      opacity: 1;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes pulseShadow {
+      0% {
+        box-shadow: 0 12px 30px rgba(122, 26, 26, 0.5);
+      }
+      100% {
+        box-shadow: 0 8px 20px rgba(122, 26, 26, 0.35);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 🌸 Top Banner Added -->
+  <div class="top-banner">🌸 Free Shipping on All Orders Above ₹499!</div>
+
+  <!-- 🔗 Logo -->
+  <header>
+    <img src="/static/logo.png" alt="SmartSkin Logo" />
+  </header>
+
+  <!-- 👋 Welcome Section -->
+  <div class="container">
+    <h2>Welcome to SmartSkin</h2>
+    <button onclick="location.href='/existing_user'">Existing User</button>
+    <button onclick="location.href='/new_user'">New User</button>
+  </div>
+
+  <!-- 🧪 Banner -->
+  <div class="banner-overlay">
+    🧪 Clinically Proven Care – Glow with Confidence  ⏳ Extra 10% Off with Code <strong>SMART10</strong>
+  </div>
+
+  <!-- 📸 Slideshow -->
+  <div class="slideshow" id="slideshow">
+    <img src="/static/cetaphil.png" alt="Cetaphil" class="active" />
+    <img src="/static/cosrx.png" alt="COSRX" />
+    <img src="/static/kirhls.png" alt="Kiehl's" />
+    <img src="/static/laneige.png" alt="Laneige" />
+    <img src="/static/safi.png" alt="Safi" />
+    <img src="/static/thebodyshop.png" alt="The Body Shop" />
+    <img src="/static/eco_banner.png" alt="eco banner" />
+
+  </div>
+
+  <!-- 🎯 Slideshow Script -->
+  <script>
+    const slides = document.querySelectorAll('#slideshow img');
+    let currentSlide = 0;
+
+    function showNextSlide() {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add('active');
+    }
+
+    setInterval(showNextSlide, 4000);
+  </script>
+</body>
+</html>

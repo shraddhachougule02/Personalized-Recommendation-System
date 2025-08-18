@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Existing User Login</title>
+  <style>
+    /* Hard reset that beats stray global CSS */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(120deg, #fff0f5, #ffe6f0);
+      color: #4d2c2c;
+
+      /* Perfect centering */
+      display: grid;
+      place-items: center;
+
+      /* Kill any offsets */
+      margin: 0;
+      padding: 0;
+
+      /* Subtle page fade-in */
+      animation: fadeIn 1s ease;
+    }
+
+    .container {
+      background: #fff0f5;
+      width: min(90vw, 420px);
+      padding: 36px 32px 30px 32px;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(168,50,50,0.18);
+      text-align: center;
+      position: relative;
+      animation: slideUp 0.8s ease;
+    }
+
+    /* Logo styling */
+.logo {
+  width: 90px;         /* smaller size */
+  height: auto;
+  margin-bottom: 18px; /* gap between logo and box */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;  /* keeps logo centered above box */
+  object-fit: contain;
+  filter: drop-shadow(0 3px 12px rgba(168,50,50,0.09));
+}
+
+
+
+
+    h3 { 
+      margin: 0 0 24px; 
+      font-size: 1.32em;
+      letter-spacing: 0.2px;
+      font-weight: 700;
+      color: #a83232;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px 15px;
+      margin: 8px 0 24px;
+      border: 2px solid #a83232;
+      border-radius: 8px;
+      font-size: 16px;
+      display: block;
+      transition: border .25s;
+      outline: none;
+    }
+    input[type="text"]:focus {
+      border-color: #7a1a1a;
+      box-shadow: 0 0 4px #a8323255;
+    }
+
+    input[type="submit"] {
+      background: #a83232;
+      color: #fff;
+      border: none;
+      padding: 13px 25px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background .25s, transform .22s;
+      width: 100%;
+      display: block;
+      font-weight: 600;
+      box-shadow: 0 3px 12px rgba(168,50,50,0.09);
+    }
+    input[type="submit"]:hover { 
+      background: #7a1a1a; 
+      transform: translateY(-2px); 
+    }
+    input[type="submit"]:active {
+      transform: none; 
+    }
+
+    a {
+      display: block;
+      margin-top: 24px;
+      color: #a83232;
+      text-decoration: none;
+      font-weight: 700;
+      transition: color 0.2s;
+      font-size: 1.07em;
+    }
+    a:hover { color: #7a1a1a; }
+
+    /* Animations for subtle flair */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0;}
+      to   { transform: translateY(0);   opacity: 1;}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Your SmartSkin logo added here -->
+    <img src="../static/logo.png" class="logo">
+
+    <h3>Enter your User ID:</h3>
+    <form action="/login" method="post">
+      <input type="text" name="user_id" placeholder="User ID" required>
+      <input type="submit" value="Login">
+    </form>
+    <a href="/">Back to Home</a>
+  </div>
+</body>
+</html>

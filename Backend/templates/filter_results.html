@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Filtered Products</title>
+  <style>
+    body {
+      font-family: Roboto, sans-serif;
+      background: linear-gradient(120deg, #ffe6f0, #fff0f5);
+      color: #4d2c2c;
+      margin: 0;
+      padding: 0 20px 20px 20px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      padding: 20px 0 10px 20px; /* padding-left to align logo */
+      max-width: 700px;
+      margin-left: 0;
+      gap: 20px;
+    }
+
+    .logo {
+      width: 80px;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 3px 10px rgba(168, 50, 50, 0.1));
+      flex-shrink: 0;
+      margin-left: 0;
+    }
+
+    .header h2 {
+      margin: 0;
+      font-size: 1.6rem;
+      color: #a83232;
+      font-weight: 700;
+      flex-grow: 1;
+      text-align: center; /* centered text */
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    ul {
+      padding: 0;
+      list-style: none;
+      margin: 20px 0 0 0;
+    }
+
+    li {
+      background: #fff0f5;
+      margin-bottom: 12px;
+      padding: 12px 20px;
+      border-radius: 10px;
+      box-shadow: 0 3px 8px rgba(168, 50, 50, 0.15);
+      font-weight: 600;
+      font-size: 16px;
+      color: #4d2c2c;
+    }
+
+    .product-name {
+      margin-bottom: 6px;
+    }
+    .product-meta {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 400;
+      font-size: 14px;
+      color: #7a1a1a;
+    }
+    .product-meta .price {
+      font-weight: 700;
+    }
+
+    .back-link {
+      display: block;
+      max-width: 700px;
+      margin: 20px auto 0;
+      text-align: center;
+    }
+
+    .back-link a {
+      color: #a83232;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .back-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <!-- Logo header with centered heading -->
+  <div class="header" style="max-width:none;">
+    <img src="../static/logo.png" class="logo" alt="Logo" />
+    <h2>Filtered Products</h2>
+  </div>
+
+  <div class="container">
+    {% if error_msg %}
+      <p class="muted">{{ error_msg }}</p>
+    {% endif %}
+
+    {% if results and results|length > 0 %}
+      <ul>
+        {% for item in results %}
+          <li>
+            <div class="product-name">{{ item.product_name }}</div>
+            <div class="product-meta">
+              <span>{{ item.brand }}</span>
+              <span class="price">₹{{ item.price }}</span>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="muted">No products found for these filters.</p>
+    {% endif %}
+
+    <div class="back-link">
+      <a href="{{ back_to }}">← Back</a>
+    </div>
+  </div>
+</body>
+</html>
