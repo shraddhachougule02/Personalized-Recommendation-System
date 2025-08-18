@@ -91,6 +91,7 @@ app.add_middleware(GZipMiddleware, minimum_size=500)
 
 # Static & Templates
 app.mount("/static", StaticFiles(directory="static"), name="static")
+
 templates = Jinja2Templates(directory="templates")
 
 # ---------- helper to render the user home (so we can call from POST and from GET) ----------
